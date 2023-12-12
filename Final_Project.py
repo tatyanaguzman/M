@@ -8,8 +8,7 @@
 # #### 1) Read in the data, call the dataframe "s"  and check the dimensions of the dataframe
 
 # In[6]:
-
-import Streamlit as st
+#import streamlit as st
 import pandas as pd
 import numpy as np
 import statsmodels.api as sm
@@ -210,5 +209,9 @@ def main():
 if __name__ == "__main__":
     main()
 
+import joblib
+
+# Save the trained model to a file
+joblib.dump(logreg_model, 'logreg_model.joblib')
 
 

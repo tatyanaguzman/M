@@ -8,7 +8,7 @@
 # #### 1) Read in the data, call the dataframe "s"  and check the dimensions of the dataframe
 
 # In[6]:
-#import streamlit as st
+import streamlit as st
 import pandas as pd
 import numpy as np
 import statsmodels.api as sm

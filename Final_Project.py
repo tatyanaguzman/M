@@ -183,6 +183,27 @@ if not hasattr(logreg_model, "feature_names_in_"):
     feature_names = X.columns.tolist()
     logreg_model.fit(X_train_np, y_train)
     logreg_model.feature_names_in_ = feature_names
+pastel_styles = """
+<style>
+body {
+    background-color: #f2f2f2; /* Light gray background */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #333333; /* Dark gray heading text */
+}
+
+.sidebar .widget-title {
+    color: #333333; /* Dark gray sidebar widget title */
+}
+
+.slider-container {
+    color: #333333; /* Dark gray slider text */
+}
+
+/* Add more styles as needed */
+</style>
+"""
 
 # Streamlit App
 def main(logreg_model):

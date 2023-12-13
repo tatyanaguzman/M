@@ -173,6 +173,50 @@ prob_scenario_2 = logreg_model.predict_proba(scenario_2)[:, 1]
 print(f"Probability of LinkedIn usage for Scenario 1: {prob_scenario_1[0]:.4f}")
 print(f"Probability of LinkedIn usage for Scenario 2: {prob_scenario_2[0]:.4f}")
 
+pastel_blue = "#AED6F1"
+pastel_green = "#ABEBC6"
+pastel_pink = "#FADBD8"
+pastel_yellow = "#F9E79F"
+pastel_purple = "#D2B4DE"
+
+# Set custom Streamlit theme
+st.markdown(
+    f"""
+    <style>
+        .reportview-container {{
+            background-color: {pastel_pink};
+            color: {pastel_purple};
+        }}
+        .sidebar .sidebar-content {{
+            background-color: {pastel_blue};
+            color: {pastel_purple};
+        }}
+        .Widget {{
+            color: {pastel_purple};
+        }}
+        .streamlit-table {{
+            color: {pastel_purple};
+        }}
+        .stButton {{
+            background-color: {pastel_green};
+            color: {pastel_purple};
+        }}
+        .stTextInput {{
+            background-color: {pastel_yellow};
+            color: {pastel_purple};
+        }}
+        .stSelectbox div div {{
+            background-color: {pastel_yellow};
+            color: {pastel_purple};
+        }}
+        .stSlider div div div {{
+            background-color: {pastel_yellow};
+            color: {pastel_purple};
+        }}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 # In[ ]:
 # Load the trained model
@@ -183,28 +227,6 @@ if not hasattr(logreg_model, "feature_names_in_"):
     feature_names = X.columns.tolist()
     logreg_model.fit(X_train_np, y_train)
     logreg_model.feature_names_in_ = feature_names
-
-pastel_styles = """
-<style>
-body {
-    background-color: #f2f2f2; /* Light gray background */
-}
-
-h1, h2, h3, h4, h5, h6 {
-    color: #333333; /* Dark gray heading text */
-}
-
-.sidebar .widget-title {
-    color: #333333; /* Dark gray sidebar widget title */
-}
-
-.slider-container {
-    color: #333333; /* Dark gray slider text */
-}
-
-/* Add more styles as needed */
-</style>
-"""
 
 # Streamlit App
 def main(logreg_model):

@@ -230,15 +230,15 @@ def main(logreg_model):
     st.table(coefficients)
 
     # Explanatory Text
-    st.subheader("Feature Explanation")
-    st.write("This app uses a logistic regression model to predict whether an individual is a LinkedIn user or not. The model takes into account various features such as income, education, parental status, marital status, gender, and age.")
+    st.subheader("What am I looking at?")
+    st.write("This app uses a logistic regression model to predict whether or not a person is a LinkedIn. The model takes into account variables such as income, education, parental status, marital status, gender, and age.")
 
     # Confidence Interval
     st.subheader("Confidence Interval for Prediction")
     confidence_interval = 0.95
     lower_bound = np.percentile(prediction_proba, (1-confidence_interval)/2 * 100)
     upper_bound = np.percentile(prediction_proba, (1+confidence_interval)/2 * 100)
-    st.write(f"There is a {confidence_interval*100}% confidence that the true probability lies between {lower_bound:.4f} and {upper_bound:.4f}.")
+    st.write(f"There is a {confidence_interval*100}% confidence that the true probability lies between {lower_bound:.4f}% and {upper_bound:.4f}%.")
 
 if __name__ == "__main__":
     main(logreg_model)

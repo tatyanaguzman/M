@@ -183,6 +183,7 @@ if not hasattr(logreg_model, "feature_names_in_"):
     feature_names = X.columns.tolist()
     logreg_model.fit(X_train_np, y_train)
     logreg_model.feature_names_in_ = feature_names
+
 pastel_styles = """
 <style>
 body {

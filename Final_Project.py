@@ -173,52 +173,6 @@ prob_scenario_2 = logreg_model.predict_proba(scenario_2)[:, 1]
 print(f"Probability of LinkedIn usage for Scenario 1: {prob_scenario_1[0]:.4f}")
 print(f"Probability of LinkedIn usage for Scenario 2: {prob_scenario_2[0]:.4f}")
 
-# Define dark colors
-dark_background = "#2C3E50"
-dark_text = "#ECF0F1"
-dark_sidebar = "#34495E"
-dark_accent = "#3498DB"
-dark_button = "#2ECC71"
-
-# Set custom Streamlit theme for dark mode
-st.markdown(
-    f"""
-    <style>
-        .reportview-container {{
-            background-color: {dark_background};
-            color: {dark_text};
-        }}
-        .sidebar .sidebar-content {{
-            background-color: {dark_sidebar};
-            color: {dark_text};
-        }}
-        .Widget {{
-            color: {dark_text};
-        }}
-        .streamlit-table {{
-            color: {dark_text};
-        }}
-        .stButton {{
-            background-color: {dark_button};
-            color: {dark_text};
-        }}
-        .stTextInput {{
-            background-color: {dark_sidebar};
-            color: {dark_text};
-        }}
-        .stSelectbox div div {{
-            background-color: {dark_sidebar};
-            color: {dark_text};
-        }}
-        .stSlider div div div {{
-            background-color: {dark_sidebar};
-            color: {dark_text};
-        }}
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 # Logistic Regression Model (global scope)
 logreg_model = LogisticRegression(class_weight='balanced', random_state=42)
 
@@ -232,9 +186,8 @@ if not hasattr(logreg_model, "feature_names_in_"):
 # Streamlit App
 def main(logreg_model):
     st.title("LinkedIn User Prediction App")
- # User Input Form
-    user_name = st.text_input("Enter Your Name:")
     
+      
     # User Input Form
     st.sidebar.header("Change the settings to describe yourself! I will guess if you use LinkedIn or not!")
     income = st.sidebar.slider("Income", 1, 10, 5)

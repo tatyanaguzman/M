@@ -178,8 +178,14 @@ print(f"Probability of LinkedIn usage for Scenario 2: {prob_scenario_2[0]:.4f}")
 # Load the trained model
 logreg_model = LogisticRegression(class_weight='balanced', random_state=42)  # Include your trained model instantiation code here
 
+if not hasattr(logreg_model, "feature_names_in_"):
+    X_train_np = X_train.to_numpy()
+    feature_names = X.columns.tolist()
+    logreg_model.fit(X_train_np, y_train)
+    logreg_model.feature_names_in_ = feature_names
+
 # Streamlit App
-def main():
+def main(logreg_model):
     st.title("LinkedIn User Prediction App")
 
     # User Input Form
@@ -205,13 +211,6 @@ def main():
     st.write(f"Prediction: {prediction}")
     st.write(f"Probability of LinkedIn Usage: {prediction_proba[0]:.4f}")
 
-
 if __name__ == "__main__":
-    main()
-
-import joblib
-
-# Save the trained model to a file
-joblib.dump(logreg_model, 'logreg_model.joblib')
-
+    main(logreg_model)
 

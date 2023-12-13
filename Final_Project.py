@@ -173,45 +173,46 @@ prob_scenario_2 = logreg_model.predict_proba(scenario_2)[:, 1]
 print(f"Probability of LinkedIn usage for Scenario 1: {prob_scenario_1[0]:.4f}")
 print(f"Probability of LinkedIn usage for Scenario 2: {prob_scenario_2[0]:.4f}")
 
-pastel_blue = "#AED6F1"
-pastel_green = "#ABEBC6"
-pastel_pink = "#FADBD8"
-pastel_yellow = "#F9E79F"
-pastel_purple = "#D2B4DE"
+# Define dark colors
+dark_background = "#2C3E50"
+dark_text = "#ECF0F1"
+dark_sidebar = "#34495E"
+dark_accent = "#3498DB"
+dark_button = "#2ECC71"
 
-# Set custom Streamlit theme
+# Set custom Streamlit theme for dark mode
 st.markdown(
     f"""
     <style>
         .reportview-container {{
-            background-color: {pastel_pink};
-            color: {pastel_purple};
+            background-color: {dark_background};
+            color: {dark_text};
         }}
         .sidebar .sidebar-content {{
-            background-color: {pastel_blue};
-            color: {pastel_purple};
+            background-color: {dark_sidebar};
+            color: {dark_text};
         }}
         .Widget {{
-            color: {pastel_purple};
+            color: {dark_text};
         }}
         .streamlit-table {{
-            color: {pastel_purple};
+            color: {dark_text};
         }}
         .stButton {{
-            background-color: {pastel_green};
-            color: {pastel_purple};
+            background-color: {dark_button};
+            color: {dark_text};
         }}
         .stTextInput {{
-            background-color: {pastel_yellow};
-            color: {pastel_purple};
+            background-color: {dark_sidebar};
+            color: {dark_text};
         }}
         .stSelectbox div div {{
-            background-color: {pastel_yellow};
-            color: {pastel_purple};
+            background-color: {dark_sidebar};
+            color: {dark_text};
         }}
         .stSlider div div div {{
-            background-color: {pastel_yellow};
-            color: {pastel_purple};
+            background-color: {dark_sidebar};
+            color: {dark_text};
         }}
     </style>
     """,

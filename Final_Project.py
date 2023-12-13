@@ -232,9 +232,11 @@ if not hasattr(logreg_model, "feature_names_in_"):
 # Streamlit App
 def main(logreg_model):
     st.title("LinkedIn User Prediction App")
-
+ # User Input Form
+    user_name = st.text_input("Enter Your Name:")
+    
     # User Input Form
-    st.sidebar.header("User Input Features")
+    st.sidebar.header("Change the settings to describe yourself! I will guess if you use LinkedIn or not!")
     income = st.sidebar.slider("Income", 1, 10, 5)
     education = st.sidebar.slider("Education", 1, 10, 5)
     parent = st.sidebar.radio("Parent", ["Yes", "No"])

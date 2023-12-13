@@ -219,10 +219,10 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# In[ ]:
-# Load the trained model
-logreg_model = LogisticRegression(class_weight='balanced', random_state=42)  # Include your trained model instantiation code here
+# Logistic Regression Model (global scope)
+logreg_model = LogisticRegression(class_weight='balanced', random_state=42)
 
+# Check if the model is fitted, if not, fit it
 if not hasattr(logreg_model, "feature_names_in_"):
     X_train_np = X_train.to_numpy()
     feature_names = X.columns.tolist()

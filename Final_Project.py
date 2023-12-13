@@ -186,10 +186,11 @@ if not hasattr(logreg_model, "feature_names_in_"):
 # Streamlit App
 def main(logreg_model):
     st.title("LinkedIn User Prediction App")
-    
-      
+
     # User Input Form
-    st.sidebar.header("Change the settings to describe yourself! I will guess if you use LinkedIn or not!")
+    user_name = st.text_input("Enter Your Name:")
+    
+    st.sidebar.header("User Input Features")
     income = st.sidebar.slider("Income", 1, 10, 5)
     education = st.sidebar.slider("Education", 1, 10, 5)
     parent = st.sidebar.radio("Parent", ["Yes", "No"])
@@ -207,10 +208,37 @@ def main(logreg_model):
     prediction = "LinkedIn User" if prediction_proba >= 0.5 else "Non-LinkedIn User"
 
     # Display Results
-    st.subheader("Prediction Results")
+    st.subheader(f"Prediction Results for {user_name}")
     st.write(f"Prediction: {prediction}")
     st.write(f"Probability of LinkedIn Usage: {prediction_proba[0]:.4f}")
 
+    # Visualization of User Input
+    user_input_data = pd.DataFrame({
+        "Feature": ["Income", "Education", "Parent", "Married", "Gender", "Age"],
+        "Value": [income, education, parent, married, gender, age]
+    })
+    st.bar_chart(user_input_data.set_index("Feature"))
+
+    # Model Coefficients
+    st.subheader("Logistic Regression Model Coefficients")
+    coefficients = pd.DataFrame({
+        "Feature": ["Income", "Education", "Parent", "Married", "Gender", "Age", "Intercept"],
+        "Coefficient": [logreg_model.coef_[0][0], logreg_model.coef_[0][1], logreg_model.coef_[0][2],
+                        logreg_model.coef_[0][3], logreg_model.coef_[0][4], logreg_model.coef_[0][5],
+                        logreg_model.intercept_[0]]
+    })
+    st.table(coefficients)
+
+    # Explanatory Text
+    st.subheader("Feature Explanation")
+    st.write("This app uses a logistic regression model to predict whether an individual is a LinkedIn user or not. The model takes into account various features such as income, education, parental status, marital status, gender, and age.")
+
+    # Confidence Interval
+    st.subheader("Confidence Interval for Prediction")
+    confidence_interval = 0.95
+    lower_bound = np.percentile(prediction_proba, (1-confidence_interval)/2 * 100)
+    upper_bound = np.percentile(prediction_proba, (1+confidence_interval)/2 * 100)
+    st.write(f"There is a {confidence_interval*100}% confidence that the true probability lies between {lower_bound:.4f} and {upper_bound:.4f}.")
+
 if __name__ == "__main__":
     main(logreg_model)
-
